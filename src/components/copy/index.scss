@@ -1,0 +1,21 @@
+
+.copy {
+  cursor: pointer;
+  display: inline-block;
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__gap {
+      padding: 3px;
+    }
+    &__checkedIcon {
+      background-image: url("./assets/checkedIcon.svg");
+      padding: 7px;
+    }
+    &__copyIcon {
+      background-image: url("./assets/copy.svg");
+      padding: 7px;
+    }
+  }
+}

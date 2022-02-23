@@ -1,0 +1,28 @@
+
+.introduction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__logo {
+    background-image: url("./assets/icon.png");
+    padding: 70px;
+    margin-right: 30px;
+    border-radius: 70px;
+  }
+  &__description {
+    &__line1 {
+      color: gray;
+      padding-top: 10px;
+      padding-bottom: 15px;
+      font-size: 14px;
+    }
+    &__line2 {
+      font-size: 20px;
+      padding-bottom: 10px;
+    }
+    &__line3 {
+      font-size: 20px;
+      padding-bottom: 15px;
+    }
+  }
+}

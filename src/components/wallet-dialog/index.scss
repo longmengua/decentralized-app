@@ -1,0 +1,38 @@
+
+.walletDialog {
+  .flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .copy {
+    color: gray;
+  }
+  &__title {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  &__detail {
+    margin-bottom: 10px;
+    border-radius: 20px;
+    border: 1px solid rgb(64, 68, 79);
+    padding: 1rem;
+    &__disConnect {
+      cursor: pointer;
+      padding: 3px 10px;
+      border-radius: 30px;
+      border: 1px solid white;
+    }
+    &__connector {
+      color: gray;
+    }
+    &__address {
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+  }
+  &__transactions {
+    padding: 10px;
+  }
+}
