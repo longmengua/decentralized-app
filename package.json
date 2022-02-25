@@ -7,6 +7,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "eslint:fix": "eslint --fix src/.",
     "major": "yarn version --pre --major",
     "minor": "yarn version --pre --minor",
     "patch": "yarn version --pre --patch"
@@ -14,10 +15,8 @@
   "dependencies": {
     "@ethersproject/providers": "5.5.3",
     "@reduxjs/toolkit": "1.7.2",
-    "@testing-library/jest-dom": "4.2.4",
     "@testing-library/react": "9.5.0",
     "@testing-library/user-event": "7.2.1",
-    "@types/jest": "24.9.1",
     "@types/node": "12.20.46",
     "@types/react": "16.14.23",
     "@types/react-dom": "16.9.14",
@@ -28,6 +27,7 @@
     "node-sass": "7.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-qr-code": "^2.0.3",
     "react-redux": "7.2.6",
     "react-router-dom": "6.2.1",
     "react-scripts": "5.0.0",
@@ -47,5 +47,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@types/jest": "^24.9.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.1",
+    "@typescript-eslint/parser": "^5.12.1",
+    "eslint": "^8.9.0",
+    "eslint-plugin-react": "^7.28.0",
+    "jest": "^27.5.1"
   }
 }

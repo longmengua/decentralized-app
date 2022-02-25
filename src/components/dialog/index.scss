@@ -7,7 +7,7 @@
   max-width: 420px;
   max-height: 90vh;
   position: relative;
-  padding: 15px 30px;
+  padding: 25px 30px;
   box-sizing: border-box;
 
   &__close {
@@ -15,7 +15,7 @@
     padding: 10px;
     position: absolute;
     right: 10px;
-    top: 10px;
+    top: 5px;
     cursor: pointer;
   }
 }

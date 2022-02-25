@@ -1,40 +1,45 @@
-import React, {useCallback, useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {WalletSliceAction, WalletSliceName, WalletStateI} from "../redux/reducers/wallet";
-import {RootState} from "../redux/store";
-import {WalletConnectorEnum, WalletStatusEnum} from "../constants/wallet/types";
-import {Network_Settings, SupportedChainId} from "../constants/chain";
+import React, {useCallback, useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {WalletSliceAction, WalletSliceName, WalletStateI} from '../../redux/reducers/wallet'
+import {RootState} from '../../redux/store'
+import {WalletConnectorEnum, WalletStatusEnum} from '../../redux/reducers/wallet/types'
+import {Network_Settings, SupportedChainId} from '../../constants/chain'
+import {ethers} from 'ethers'
 
-export const WalletConnect = () => {
-  const dispatch = useDispatch();
-  const wallet: WalletStateI = useSelector((rootState: RootState) => rootState[WalletSliceName])
+/* eslint-disable */
+export const WalletConnectService = () => {
+  const dispatch = useDispatch()
+  const root: RootState = useSelector((rootState: RootState) => rootState)
+  const wallet: WalletStateI = root[WalletSliceName]
 
   // https://docs.metamask.io/guide/getting-started.html#basic-considerations
   const metamaskConnector = useCallback(async () => {
     const ethereum = (window as any)?.ethereum
+    const web3Provider = new ethers.providers.Web3Provider(ethereum)
 
     if(!ethereum.isMetaMask) {
       // TBD
-      console.log('MetaMask is not installed!')
+      console.warn('MetaMask is not installed!')
       return
     }
 
     if(wallet.address) return
 
     await ethereum.request({ method: 'eth_requestAccounts' }).then((accounts: Array<string>) => {
-      const account = accounts[0]
-      // console.log('accounts', accounts, account)
-      dispatch(WalletSliceAction.connect({address: account}))
+      const address = accounts[0]
+      const signer = web3Provider.getSigner(address)
+      // console.log('accounts', address)
+      dispatch(WalletSliceAction.connect({address, web3Provider, signer}))
     }).catch(() => {
       dispatch(WalletSliceAction.rejectConnecting())
     })
 
     ethereum.on('accountsChanged', function (accounts: Array<string>) {
-      // TBD
-      const account = accounts[0]
-      // console.log('accounts', accounts, account)
-      dispatch(WalletSliceAction.connect({address: account}))
-    });
+      const address = accounts[0]
+      const signer = web3Provider.getSigner(address)
+      // console.log('accounts', address)
+      dispatch(WalletSliceAction.connect({address, web3Provider, signer}))
+    })
   }, [dispatch, wallet.address])
 
   // Detect wallet connect
@@ -45,7 +50,7 @@ export const WalletConnect = () => {
       metamaskConnector().then(r => r)
     }
     // TBD: BSC Wallet
-  }, [metamaskConnector, wallet.walletConnector, wallet.status]);
+  }, [metamaskConnector, wallet.walletConnector, wallet.status])
 
   // switch chain
   useEffect(() => {
@@ -61,7 +66,6 @@ export const WalletConnect = () => {
       const p = Network_Settings[wallet.chainId]
 
       if(!ethereum.isConnected() || ethereum.chainId === p.chainId) return
-      console.log('switchChain')
 
       if([SupportedChainId.ETHEREUM, SupportedChainId.KOVAN].includes(wallet.chainId)){
         ethereum.request({
@@ -81,7 +85,7 @@ export const WalletConnect = () => {
         console.log(e)
       })
     }
-  }, [dispatch, wallet.walletConnector, wallet.chainId]);
+  }, [dispatch, wallet.walletConnector, wallet.chainId])
 
   // chain callback
   useEffect(() => {
@@ -101,7 +105,7 @@ export const WalletConnect = () => {
         dispatch(WalletSliceAction.disConnect())
       })
     }
-  }, [dispatch, wallet.walletConnector]);
+  }, [dispatch, wallet.walletConnector])
 
-  return <></>;
-};
+  return <></>
+}

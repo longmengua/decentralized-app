@@ -1,0 +1,118 @@
+.agent {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 20px 25px;
+  border-radius: 20px;
+  background-color: rgb(26, 26, 39);
+  margin: 5px;
+  .block {
+    width: 170px;
+    height: 50px;
+    background-color: gray;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+  }
+  .button {
+    text-align: center;
+    background-color: red;
+    padding: 3px 15px;
+    border-radius: 3px;
+    margin-left: 20px;
+    cursor: pointer;
+  }
+  &__user {
+    margin-bottom: 10px;
+    flex: 1;
+    &__block{
+      display: flex;
+      justify-content: space-evenly;
+      &__avatar {
+        padding:  60px 90px; // ratio: close to 2:3
+        background-image: url("./assets/avatar.png");
+      }
+      &__info {
+        min-width: 200px;
+        margin-left: 10px;
+        .flex {
+          margin: 10px 0;
+        }
+      }
+    }
+  }
+  &__communityOfficer {
+    flex: 1;
+    &__header {
+      display: flex;
+      justify-content: center;
+    }
+    &__block{
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      &__lastWeek {
+        .flex {
+          font-size: 12px;
+        }
+      }
+      &__accumulated {
+        .flex {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  &__productOfficer {
+    flex: 1;
+    margin-top: 8px;
+    &__header {
+      display: flex;
+      justify-content: center;
+    }
+    &__block{
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      &__lastEpoch {
+        .flex {
+          font-size: 12px;
+        }
+      }
+      &__accumulated {
+        .flex {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+
+@media only screen and (max-width: 512px) {
+  .agent {
+    .button {
+      margin-top: 10px;
+    }
+    &__user{
+      &__block{
+        flex-direction: column;
+      }
+    }
+    &__communityOfficer {
+      &__block, &__header {
+        text-align: center;
+        flex-direction: column;
+      }
+    }
+    &__productOfficer {
+      &__block, &__header {
+        text-align: center;
+        flex-direction: column;
+      }
+    }
+  }
+}

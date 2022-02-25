@@ -1,39 +1,28 @@
-import React from "react";
-import {Header} from "../../components/header";
-import {Introduction} from "../../components/introduction";
+import React from 'react'
+import {Header} from '../../components/header'
+import {Introduction} from '../../components/introduction'
 import './index.scss'
-import {TokenInformation} from "../../components/token-information";
-import {Identity} from "../../components/Identity";
-import {AgentLeaderBoard} from "../../components/agent-leader-board";
-
-const testData = [
-  {
-    rank: 1,
-    name: 'test',
-  },
-  {
-    rank: 2,
-    name: 'test',
-  },
-  {
-    rank: 3,
-    name: 'test',
-  }
-]
+import {TokenInformation} from '../../components/token-information'
+import {Agent} from '../../components/agent'
+import {AgentLeaderBoard} from '../../components/agent-leader-board'
+import {ComingSoonOverlay} from '../../components/coming-soon-overlay'
 
 export const Home = () => {
   return <>
     <Header />
-    <div className={"home"}>
-      <div style={{display: 'flex'}}>
-        <Introduction />
-        <div style={{flex: 1}}/>
-        <TokenInformation circulate={81821304} totalSupply={1000000000} percentage={8.18} distributed={5013698.26} />
+    <div className={'home'}>
+      <div className={'gap20'} />
+      <div className={'home__first'}>
+        <Introduction className={'flex1'}/>
+        <ComingSoonOverlay className={'flex1'} >
+          <TokenInformation circulate={81821304} totalSupply={1000000000} percentage={8.18} distributed={5013698.26} />
+        </ComingSoonOverlay>
       </div>
-      <div style={{padding: '10px'}}/>
-      <Identity name={'007'} date={'2022.02.01'} role={'co, po'} lastWeek={150} lastEpoch={150} coAccumulated={1500} poAccumulated={1500} lastWeekMissionPercentage={27.25}/>
-      <div style={{padding: '10px'}}/>
-      <AgentLeaderBoard communityData={testData} productData={testData}/>
+      <div className={'gap40'} />
+      <div className={'home__second'}>
+        <Agent className={'flex1'}/>
+        <AgentLeaderBoard className={'flex1'}/>
+      </div>
     </div>
-  </>;
-};
+  </>
+}
